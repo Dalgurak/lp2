@@ -1,0 +1,34 @@
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://lpcdn.lpsnmedia.net/webagent/client-SDK.min.js"></script>
+</head>
+
+<body>
+    <h1>Test Widget 1</h1>
+    <script type="text/javascript">
+      var SDK = lpTag.agentSDK || {};
+      SDK.init();
+
+      var accountId = '';
+      SDK.get('chatInfo.accountId', function (accid) {
+          accountId = accid;  
+         console.log("Retrieved Account Id " + accountId);
+      }, function (err) {
+          console.log('Failed to retrieve ' + accountId);
+      })
+
+      function getChat() {
+          lpTag.agentSDK.get('chatTranscript', function (returned) {
+             console.log("Retrieved:  " + JSON.stringify(returned));
+          }, function (err) {
+              console.log('Failed to retrieve ' + err);
+          })
+      }
+      getChat()
+    </script>
+</body>
+
+</html>
